@@ -1,3 +1,4 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/ui/main_page.dart';
 
@@ -12,9 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Habit Tracker',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
+      themeMode: ThemeMode.dark,
       home: const MainPage(),
     );
   }
