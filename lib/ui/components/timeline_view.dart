@@ -19,6 +19,15 @@ class TimelineView extends StatelessWidget {
       child: EasyDateTimeLine(
         initialDate: selectedDate,
         onDateChange: onSelectedDateChanged,
+        headerProps: EasyHeaderProps(
+          monthPickerType: MonthPickerType.dropDown,
+          showHeader: false,
+          showSelectedDate: true,
+        ),
+        dayProps: EasyDayProps(
+          dayStructure: DayStructure.dayNumDayStr,
+          activeDayStyle: DayStyle(),
+        ),
       ),
     );
   }
