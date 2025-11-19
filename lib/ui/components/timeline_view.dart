@@ -26,8 +26,41 @@ class TimelineView extends StatelessWidget {
         ),
         dayProps: EasyDayProps(
           dayStructure: DayStructure.dayNumDayStr,
-          activeDayStyle: DayStyle(),
+          activeDayStyle: DayStyle(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              gradient: LinearGradient(
+                colors: [colorScheme.primary, colorScheme.secondary],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            dayStrStyle: TextStyle(
+              color: colorScheme.onPrimary,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+            dayNumStyle: TextStyle(
+              color: colorScheme.onPrimary,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          inactiveDayStyle: DayStyle(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: colorScheme.surface,
+              border: Border.all(color: colorScheme.outlineVariant, width: 1),
+            ),
+            dayStrStyle: TextStyle(color: colorScheme.onSurface, fontSize: 16),
+            dayNumStyle: TextStyle(color: colorScheme.onSurface, fontSize: 16),
+          ),
+          // todayHighlightStyle: TodayHighlightStyle.withBackground,
+          todayHighlightColor: colorScheme.primaryContainer.withValues(
+            alpha: 0.3,
+          ),
         ),
+        timeLineProps: EasyTimeLineProps(separatorPadding: 16),
       ),
     );
   }
