@@ -55,7 +55,7 @@ class TimelineView extends StatelessWidget {
             dayStrStyle: TextStyle(color: colorScheme.onSurface, fontSize: 16),
             dayNumStyle: TextStyle(color: colorScheme.onSurface, fontSize: 16),
           ),
-          // todayHighlightStyle: TodayHighlightStyle.withBackground,
+          todayHighlightStyle: TodayHighlightStyle.withBackground,
           todayHighlightColor: colorScheme.primaryContainer.withValues(
             alpha: 0.3,
           ),
