@@ -60,7 +60,14 @@ class TimelineView extends StatelessWidget {
             alpha: 0.3,
           ),
         ),
-        timeLineProps: EasyTimeLineProps(separatorPadding: 16),
+        timeLineProps: EasyTimeLineProps(
+          separatorPadding: 16,
+          decoration: BoxDecoration(
+            border: Border(
+              left: BorderSide(color: colorScheme.primary, width: 2.0),
+            ),
+          ),
+        ),
       ),
     );
   }
