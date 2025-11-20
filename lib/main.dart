@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Habit Tracker',
+      title: 'The Daily Win',
       darkTheme: FlexThemeData.light(scheme: FlexScheme.blue),
       themeMode: ThemeMode.dark,
       home: const MainPage(),
