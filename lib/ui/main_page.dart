@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:habit_tracker/ui/components/daily_summary_card.dart';
 import 'package:habit_tracker/ui/components/timeline_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,7 +11,7 @@ class MainPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedDate = useState(DateTime.now());
     return Scaffold(
-      appBar: AppBar(title: const Text('Habit Tracker')),
+      appBar: AppBar(title: const Text('The Daily Win')),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16),
@@ -20,6 +21,11 @@ class MainPage extends HookConsumerWidget {
               TimelineView(
                 selectedDate: selectedDate.value,
                 onSelectedDateChanged: (date) => selectedDate.value = date,
+              ),
+              DailySummaryCard(
+                completedTasks: 1,
+                totalTasks: 1,
+                date: "2024/15/20",
               ),
             ],
           ),
