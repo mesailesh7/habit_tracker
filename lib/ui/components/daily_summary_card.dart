@@ -62,6 +62,55 @@ class DailySummaryCard extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: LinearProgressIndicator(
+                      value: progress,
+                      minHeight: 24,
+                      backgroundColor: colorScheme.surface.withValues(
+                        alpha: 0.2,
+                      ),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        colorScheme.surface.withValues(alpha: 0.8),
+                      ),
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: Center(
+                      child: Text(
+                        "${totalTasks > 0 ? ((completedTasks / totalTasks) * 100).toInt() : 0}% wins",
+                        style: TextStyle(
+                          color: colorScheme.onPrimaryContainer,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Icon(
+                    totalTasks > 0
+                        ? completedTasks == totalTasks
+                              ? Icons.check_box
+                              : Icons.check_circle_outline_rounded
+                        : Icons.check_circle_outline_rounded,
+                  ),
+                  const SizedBox(width: 20),
+                  Text(
+                    "$completedTasks / $totalTasks tasks completed",
+                    style: TextStyle(
+                      color: colorScheme.surface,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
