@@ -24,18 +24,16 @@ class winCard extends HookConsumerWidget {
     // TODO: implement build
     final colorSchema = Theme.of(context).colorScheme;
 
+    Future<void> onComplete() async {}
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
         border: Border.all(color: colorSchema.onSurface),
         gradient: LinearGradient(
           colors: [
-            isCompleted
-                ? colorSchema.surface.withValues(alpha: 0.0)
-                : colorSchema.surface.withValues(alpha: 0.5),
-            isCompleted
-                ? colorSchema.surface.withValues(alpha: 0.6)
-                : colorSchema.surface.withValues(alpha: 0.05),
+            isCompleted ? colorSchema.primary : colorSchema.secondary,
+            isCompleted ? colorSchema.secondary : colorSchema.primary,
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomCenter,
@@ -86,6 +84,36 @@ class winCard extends HookConsumerWidget {
                 ),
               ),
               const SizedBox(width: 10),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  gradient: isCompleted
+                      ? LinearGradient(
+                          colors: [colorSchema.primary, colorSchema.secondary],
+                        )
+                      : null,
+                  color: isCompleted ? colorSchema.surfaceContainerHigh : null,
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: onComplete,
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        isCompleted
+                            ? Icons.check_circle
+                            : Icons.circle_outlined,
+                        color: isCompleted
+                            ? colorSchema.onPrimary
+                            : colorSchema.onSurfaceVariant,
+                        size: 24.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
