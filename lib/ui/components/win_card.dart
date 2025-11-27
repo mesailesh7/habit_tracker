@@ -21,7 +21,7 @@ class winCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: implement build
+    // : implement build
     final colorSchema = Theme.of(context).colorScheme;
 
     Future<void> onComplete() async {}
