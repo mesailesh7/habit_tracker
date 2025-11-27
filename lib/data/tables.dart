@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-class Habits extends Table {
+class Wins extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text()();
   TextColumn get description => text().nullable()();
@@ -11,7 +11,7 @@ class Habits extends Table {
   BoolColumn get isDaily => boolean().withDefault(const Constant(false))();
 }
 
-class HabitCompletions extends Table {
+class WinsCompletion extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get habitId => integer()();
   DateTimeColumn get completedAt => dateTime()();
