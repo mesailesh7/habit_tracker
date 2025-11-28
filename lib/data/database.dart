@@ -5,6 +5,8 @@ import 'package:habit_tracker/data/tables.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+part 'database.g.dart';
+
 @DriftDatabase(tables: [Wins, WinsCompletion])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
@@ -12,7 +14,7 @@ class AppDatabase extends _$AppDatabase {
   @override
   int get schemaVersion => 1;
 
-  Future<List<Wins>> getHabits() => select(Wins).get();
+  Future<List<Wins>> getHabits() => select(wins).get();
 
   LazyDatabase _openConnection() {
     return LazyDatabase(() async {
