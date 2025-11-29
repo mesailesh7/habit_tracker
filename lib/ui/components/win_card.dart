@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../data/providers/database_provider.dart';
+
 class winCard extends HookConsumerWidget {
   const winCard({
     super.key,
@@ -21,10 +23,22 @@ class winCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // : implement build
     final colorSchema = Theme.of(context).colorScheme;
 
-    Future<void> onComplete() async {}
+    Future<void> onComplete() async {
+      await ref.read(databaseProvider).toggleHabitCompletion(habitId, date);
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isCompleted ? 'Habit uncompleted' : 'Habit completed',
+            ),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    }
 
     return Container(
       decoration: BoxDecoration(
