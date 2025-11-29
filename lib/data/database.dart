@@ -14,13 +14,26 @@ class AppDatabase extends _$AppDatabase {
   @override
   int get schemaVersion => 1;
 
-  Future<List<Wins>> getHabits() => select(wins).get();
+  Future<List<Win>> getWins() => select(wins).get();
 
-  LazyDatabase _openConnection() {
-    return LazyDatabase(() async {
-      final dbFolder = await getApplicationDocumentsDirectory();
-      final file = File(p.join(dbFolder.path, 'wins.db'));
-      return NativeDatabase.createInBackground(file);
+  Stream<List<Win>> watchWins() => select(wins).watch();
+
+  Future<int> createWins(WinsCompanion win) => into(wins).insert(win);
+
+  Future<void> completeWin(int winId, DateTime selectedDate) async {
+    await transaction(() async {
+   final startOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
+    final endOfDay = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, 23, 59, 59, 999);
+
+    final existingWins = await (select())
     });
   }
+}
+
+LazyDatabase _openConnection() {
+  return LazyDatabase(() async {
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(p.join(dbFolder.path, 'wins.db'));
+    return NativeDatabase.createInBackground(file);
+  });
 }
